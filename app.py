@@ -7,6 +7,7 @@ from sqlalchemy import create_engine
 HostName = socket.gethostbyname(socket.gethostname())
 app = Flask(__name__)
 
+# displays pairs of ip adresses and the data flow between them
 @app.route('/')
 def summary():
   sqlite_engine = create_engine('sqlite:///pcap.db')
@@ -18,6 +19,7 @@ def summary():
   totalBytes = pd.read_sql(sql = query, con = sqlite_engine)
   return totalBytes.to_html()
   
+# Shows the data flow from senders i ndecending order
 @app.route('/topsenders')
 def topsenders():
   sqlite_engine = create_engine('sqlite:///capture.db')
