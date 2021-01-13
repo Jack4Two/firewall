@@ -8,6 +8,7 @@ HostName = socket.gethostbyname(socket.gethostname())
 app = Flask(__name__)
 
 # displays pairs of ip adresses and the data flow between them
+# Limiting the row returned to 3
 @app.route('/')
 def summary():
   sqlite_engine = create_engine('sqlite:///pcap.db')
@@ -20,7 +21,6 @@ def summary():
   return totalBytes.to_html()
   
 # Shows the data flow from senders i ndecending order
-#
 @app.route('/topsenders')
 def topsenders():
   sqlite_engine = create_engine('sqlite:///capture.db')
