@@ -20,6 +20,7 @@ def summary():
   return totalBytes.to_html()
   
 # Shows the data flow from senders i ndecending order
+#
 @app.route('/topsenders')
 def topsenders():
   sqlite_engine = create_engine('sqlite:///capture.db')
